@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import Objetos.Ejemplar;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         tv1 = findViewById(R.id.tv1);
         int contador = 0;
         String resultado = "";
-
+        ArrayList<Ejemplar> lista = new ArrayList<Ejemplar>();
         try{
             db.execSQL(insert);
             cursor = db.rawQuery(select, null);
@@ -39,6 +41,18 @@ public class MainActivity extends AppCompatActivity {
                 String titulo= cursor.getString(cursor.getColumnIndex("titulo"));
                 String autor= cursor.getString(cursor.getColumnIndex("autor"));
                 String anio= cursor.getString(cursor.getColumnIndex("anio"));
+
+
+                Ejemplar ejemplar = new Ejemplar();
+                ejemplar.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+                ejemplar.setTitulo(cursor.getString(cursor.getColumnIndex("titulo")));
+                ejemplar.setAutor(cursor.getString(cursor.getColumnIndex("autor")));
+                ejemplar.setAnio(cursor.getString(cursor.getColumnIndex("anio")));
+
+                lista.add(ejemplar);
+
+
+
                 cursor.moveToNext();
                 contador++;
                 resultado += "\n-Valor "+contador+
@@ -55,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+        for(Ejemplar ejem : lista){
+            System.out.println(ejem.toString());
+        }
 
 
 
