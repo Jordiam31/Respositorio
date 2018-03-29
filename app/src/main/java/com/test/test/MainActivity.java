@@ -74,10 +74,9 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(ejem.toString());
         }
 
-        for(int i = 0; i < lista.size(); i++){
-            System.out.println(lista.get(i).toString());
+        for(Ejemplar ejem : lista){
+            System.out.println(ejem.toString());
         }
-
 
 
 
